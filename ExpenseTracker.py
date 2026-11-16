@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import date
@@ -219,23 +218,28 @@ def add_transaction(transaction_type):
         bg=WHITE
     ).pack(pady=5)
 
-    category = ttk.Combobox(
-        window,
-        values=[
+    # Different categories for Income and Expense
+    if transaction_type == "Income":
+        category_list = ["Salary"]
+    else:
+        category_list = [
             "Food",
             "Travel",
             "Shopping",
-            "Salary",
             "Bills",
             "Education",
             "Other"
-        ],
+        ]
+
+    category = ttk.Combobox(
+        window,
+        values=category_list,
         width=27,
         font=("Arial", 12),
         state="readonly"
     )
     category.pack(ipady=5, pady=10)
-    category.set("Food")
+    category.set(category_list[0])
 
     def save_transaction():
 
